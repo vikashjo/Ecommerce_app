@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :check_admin, except: ["index", "show"]
 
   # GET /products or /products.json
   def index
@@ -36,6 +37,8 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    new_product_params = product_params.to_unsafe_h
+    new_product_params.delete("images") if new_product_params["images"].all?(&:blank?)
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
@@ -65,6 +68,7 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :description, :price, images: [])
+      params.require(:product).permit(:title, :description, :price, :category_id, images: [])
     end
+
 end

@@ -14,8 +14,17 @@
 
 @layer components {
   @font-face {
+    font-family: nixieone;
+    src: url("/fonts/NixieOne.otf");
     font-family: urbanjungledemo;
     src: url("/fonts/UrbanJungleDEMO.otf");
+  }
+}
+
+@layer components {
+  @font-face {
+    font-family: nixieone;
+    src: url("/fonts/NixieOne.otf");
   }
 }
 @import 'actiontext.css';
