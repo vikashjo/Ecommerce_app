@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :categories
   devise_for :admins
   devise_for :users
-  resources :products
+  resources :products do
+    resource :buy_now, only: [:show, :create], controller: :buy_now do
+      get "success", on: :collection
+    end
+  end
   resources :users
   resource :admin, only: [:show], controller: :admin
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

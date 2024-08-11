@@ -66,3 +66,5 @@ end
 gem 'tailwindcss-rails', '~> 2.3'
 gem 'rubocop-rails', require: false
 gem "devise"
+
+gem "stripe", "~> 12.5"
