@@ -2,8 +2,12 @@ class CartsController < ApplicationController
   before_action :set_product, only: [:create, :destroy]
 
   def create
-    @product = Product.find(params[:product_id])
+    if !@current_cart
+      @current_cart = Cart.create
+      session[:current_cart_id] = @current_cart.secret_id
+    end
     @current_cart.cart_items.create(product_id: @product.id )
+    
   end
 
   def show 

@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :carts, only: [:create, :destroy, :show ] do
-    get "checkout", on: :member, to: "carts#checkout"
+  resource :cart , only: [:show, :create, :destroy] do
+    get "checkout", on: :collection, to: "carts#checkout"
     post "stripe_session", on: :member, to: "carts#stripe_session"
     get "success", on: :member, to: "carts#success"
   end
