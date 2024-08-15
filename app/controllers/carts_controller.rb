@@ -14,6 +14,9 @@ class CartsController < ApplicationController
   end
 
   def checkout
+    if !@current_cart&.cart_items&.any?
+      redirect_to root_path, notice: "You do not have any item in your cart yet!"
+    end
   end
 
   def stripe_session
